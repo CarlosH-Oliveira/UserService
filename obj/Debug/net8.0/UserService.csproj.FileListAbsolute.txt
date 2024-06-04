@@ -109,3 +109,5 @@ C:\Users\Carlos Oliveira\source\repos\UserService\bin\Debug\net8.0\Microsoft.Ide
 C:\Users\Carlos Oliveira\source\repos\UserService\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\Carlos Oliveira\source\repos\UserService\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Carlos Oliveira\source\repos\UserService\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Carlos Oliveira\source\repos\UserService\bin\Debug\net8.0\UserService.xml
+C:\Users\Carlos Oliveira\source\repos\UserService\obj\Debug\net8.0\UserService.xml

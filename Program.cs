@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.Reflection.Metadata;
 using UserService.Data;
 using UserService.Profiles;
 using UserService.Services;
@@ -11,7 +15,18 @@ var connectionString = builder.Configuration.GetConnectionString("UserConnection
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(
+    document => {
+        document.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Title = "UserService API",
+            Version = "v1",
+            Description = "API de Login e Cadastro de Usuários",
+        });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    document.IncludeXmlComments(xmlPath); }
+    );
 builder.Services.AddDbContext<UserContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddAutoMapper(typeof(UserProfile));
 builder.Services.AddScoped<PasswordHandler>();

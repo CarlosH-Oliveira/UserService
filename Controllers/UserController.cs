@@ -25,6 +25,12 @@ namespace UserService.Controllers
             _userMainService = userMainService;
         }
 
+        /// <summary>
+        /// Obtém uma lista de usuários
+        /// </summary>
+        /// <param name="skip">Determina quantos registros serão "pulados" até o ponto inicial de onde será buscada a lista de usuários</param>
+        /// <param name="take">Determina o limite de quantos registros serão retornados</param>
+        /// <returns>Retorna um intervalo de usuários determinado pelos parâmetros Skip e Take em formato de lista</returns>
         [HttpGet("GetList")]
         public IActionResult GetList([FromQuery] int skip = 0, [FromQuery] int take = 25)
         {
@@ -41,6 +47,11 @@ namespace UserService.Controllers
             
         }
 
+        /// <summary>
+        /// Registra um novo usuário
+        /// </summary>
+        /// <param name="dto">Este objeto / corpo contém as informações necessárias para a criação de uma nova conta</param>
+        /// <returns>Retorna o usuário recém registrado</returns>
         [HttpPost("Create")]
         public IActionResult CreateUser(CreateUserDTO dto)
         {
@@ -56,6 +67,11 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Realiza o login de um usuário
+        /// </summary>
+        /// <param name="dto">Este objeto / corpo contém as informações necessárias para inicializar a sessão de um usuário</param>
+        /// <returns>Retorna os dados do usuário com seu token de acesso</returns>
         [HttpPost("Login")]
         public IActionResult Login(LoginDTO dto)
         {
@@ -71,6 +87,11 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite um usuário conectado alterar sua senha
+        /// </summary>
+        /// <param name="changePasswordDTO">Este objeto / corpo contém as informações necessárias para troca de senha</param>
+        /// <returns>Retorna uma mensagem de sucesso e envia uma e-mail de confirmação para o usuário</returns>
         [HttpPost("Update/Password")]
         public IActionResult ChangePassword(ChangePasswordDTO changePasswordDTO)
         {
@@ -86,6 +107,11 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite que um usuário recupere uma conta da qual tenha esquecido a senha
+        /// </summary>
+        /// <param name="recoverPasswordDTO">Este objeto / corpo contém as informações necessárias para recuperação de senha</param>
+        /// <returns>Retorna uma mensagem de sucesso e envia uma e-mail de confirmação para o usuário</returns>
         [HttpPost("Update/Recover/Password")]
         public IActionResult RecoverPassword(RecoverPasswordDTO recoverPasswordDTO)
         {
@@ -101,6 +127,11 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Recebe e executa um pedido de alteração de senha
+        /// </summary>
+        /// <param name="tk">Token de alteração de senha</param>
+        /// <returns>Retorna uma mensagem de sucesso</returns>
         [HttpGet("Update/Password/Execute")]
         public IActionResult ExecutePasswordChange([FromQuery]string tk)
         {
@@ -116,6 +147,12 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite um usuário conectado alterar o e-mail em que sua conta está registrada
+        /// </summary>
+        /// <param name="changeEmailDTO">Este objeto / corpo contém as informações necessárias para troca de e-mail</param>
+        /// <param name="tk">Token de acesso gerado através do Login</param>
+        /// <returns>Retorna uma mensagem de sucesso e envia uma e-mail de confirmação para o novo endereço escolhido</returns>
         [HttpPost("Update/Email")]
         public IActionResult ChangeEmail(ChangeEmailDTO changeEmailDTO, [FromQuery] string tk)
         {
@@ -131,6 +168,11 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Recebe e executa um pedido de alteração de e-mail
+        /// </summary>
+        /// <param name="tk">Token de alteração de e-mail</param>
+        /// <returns>Retorna uma mensagem de sucesso</returns>
         [HttpGet("Update/Email/Execute")]
         public IActionResult ExecuteEmailChange([FromQuery] string tk)
         {
