@@ -90,8 +90,8 @@ Mensagem de sucesso.
 3 - Node.js (para usar Swagger-UI)  
 
 ### Passos para Executar a API:  
-1 - Clone este repositório:  
-2 - Navegue até a pasta da API:  
+1 - Clone este repositório: https://github.com/CarlosH-Oliveira/UserService.git  
+2 - Navegue até a pasta da API: cd UserService  
 3 - Configure a string de conexão do banco de dados no arquivo "appsettings.json"  
 4 - Execute as migrações do Entity Framework para criar o banco de dados: "dotnet ef database update" (Terminal) || "Update-Database" (Console do gerenciador de pacotes Nuget)  
 5 - Execute a aplicação: "dotnet run"
